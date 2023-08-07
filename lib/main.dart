@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,8 @@ class XyloApp extends StatelessWidget {
                   backgroundColor: Colors.red,
                 ),
                 onPressed: () {
-                  print('button clicked');
+                  final player = AudioPlayer();
+                  player.play(AssetSource('note1.wav'));
                 },
                 child: const Text(''),
               ),
