@@ -12,8 +12,10 @@ class XyloApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               buildXyloKey(color: Colors.red, soundId: 1),
               buildXyloKey(color: Colors.orange, soundId: 2),
@@ -29,16 +31,18 @@ class XyloApp extends StatelessWidget {
     );
   }
 
-  TextButton buildXyloKey({required Color color, required int soundId}){
-    return TextButton(
-      style: TextButton.styleFrom(
-        backgroundColor: color,
+  Expanded buildXyloKey({required Color color, required int soundId}){
+    return Expanded(
+      child: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: color,
+        ),
+        onPressed: () {
+          final player = AudioPlayer();
+          player.play(AssetSource('note$soundId.wav'));
+        },
+        child: const Text(''),
       ),
-      onPressed: () {
-        final player = AudioPlayer();
-        player.play(AssetSource('note$soundId.wav'));
-      },
-      child: const Text(''),
     );
   }
 }
