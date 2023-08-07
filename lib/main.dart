@@ -15,20 +15,30 @@ class XyloApp extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.red,
-                ),
-                onPressed: () {
-                  final player = AudioPlayer();
-                  player.play(AssetSource('note1.wav'));
-                },
-                child: const Text(''),
-              ),
+              buildXyloKey(color: Colors.red, soundId: 1),
+              buildXyloKey(color: Colors.orange, soundId: 2),
+              buildXyloKey(color: Colors.yellow, soundId: 3),
+              buildXyloKey(color: Colors.green, soundId: 4),
+              buildXyloKey(color: Colors.blue, soundId: 5),
+              buildXyloKey(color: Colors.indigo, soundId: 6),
+              buildXyloKey(color: Colors.purple, soundId: 7),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  TextButton buildXyloKey({required Color color, required int soundId}){
+    return TextButton(
+      style: TextButton.styleFrom(
+        backgroundColor: color,
+      ),
+      onPressed: () {
+        final player = AudioPlayer();
+        player.play(AssetSource('note$soundId.wav'));
+      },
+      child: const Text(''),
     );
   }
 }
